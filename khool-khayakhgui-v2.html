@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Хоол Хаяхгүй — Ногоон Оноо</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --g1: #1a6b3a;
+  --g2: #22923f;
+  --g3: #d1f0dc;
+  --g4: #f0faf3;
+  --gold: #d4900a;
+  --goldbg: #fff8e6;
+  --text: #111;
+  --sub: #555;
+  --border: #d6e8db;
+  --white: #fff;
+  --danger: #c0392b;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--g4);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 420px;
+  padding: 0 0 60px;
+}
+
+/* HEADER */
+.header {
+  background: var(--g1);
+  color: #fff;
+  padding: 32px 24px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.logo {
+  font-size: 44px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.brand {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  color: #fff;
+}
+.brand-mn {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+.rest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 30px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* MAIN CARD */
+.main-card {
+  background: var(--white);
+  margin: 20px 16px 0;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.card-top {
+  padding: 24px 24px 20px;
+  text-align: center;
+  background: var(--g4);
+  border-bottom: 1px solid var(--border);
+}
+.step-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--g1);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-top h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.card-top p {
+  font-size: 13px;
+  color: var(--sub);
+  line-height: 1.5;
+}
+
+/* FORM */
+.form-body { padding: 20px 20px 24px; }
+
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--sub);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 7px;
+}
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  -webkit-appearance: none;
+}
+.field input:focus {
+  border-color: var(--g2);
+  box-shadow: 0 0 0 3px rgba(34,146,63,0.12);
+}
+.field input::placeholder { font-weight: 400; color: #bbb; font-size: 16px; }
+
+.hint-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--g3);
+  border-radius: 10px;
+  padding: 9px 12px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--g1);
+  font-weight: 700;
+}
+.hint-icon { font-size: 16px; }
+
+/* SUBMIT BTN */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--g1);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.2px;
+}
+.submit-btn:active { transform: scale(0.97); background: #145530; }
+.btn-icon { font-size: 20px; }
+
+/* ERROR */
+.error-msg {
+  display: none;
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: #fdf0ef;
+  border-radius: 8px;
+  border-left: 3px solid var(--danger);
+}
+.error-msg.show { display: block; }
+
+/* SUCCESS SCREEN */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 36px 24px 32px;
+}
+.success-screen.show { display: block; }
+.success-anim {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: var(--g3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 44px;
+  animation: popBounce 0.5s cubic-bezier(.175,.885,.32,1.275) both;
+}
+@keyframes popBounce {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.success-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--g1);
+  margin-bottom: 6px;
+}
+.success-sub {
+  font-size: 14px;
+  color: var(--sub);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+.points-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--g1);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 12px 28px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+  animation: slideUp 0.4s 0.2s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.total-row {
+  background: var(--g4);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--sub);
+  margin-bottom: 20px;
+}
+.total-row strong { color: var(--g1); font-size: 18px; font-weight: 900; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sub);
+  margin-bottom: 6px;
+}
+.progress-bar {
+  height: 10px;
+  background: var(--g3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--g2);
+  border-radius: 10px;
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+.next-reward {
+  font-size: 12px;
+  color: var(--g1);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.again-btn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--sub);
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.again-btn:active { background: var(--g4); }
+
+/* INFO CARDS */
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 16px 0;
+}
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+}
+.info-icon { font-size: 26px; margin-bottom: 6px; }
+.info-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--g1);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.info-label { font-size: 11px; font-weight: 700; color: var(--sub); line-height: 1.3; }
+
+/* REWARD CARD */
+.reward-card {
+  background: var(--goldbg);
+  border: 1px solid #f0d080;
+  border-radius: 16px;
+  margin: 14px 16px 0;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.reward-icon { font-size: 28px; flex-shrink: 0; }
+.reward-title { font-size: 14px; font-weight: 900; color: var(--gold); margin-bottom: 3px; }
+.reward-desc { font-size: 12px; color: #7a5a10; font-weight: 600; line-height: 1.5; }
+
+/* NUDGE */
+.nudge {
+  margin: 14px 16px 0;
+  background: var(--g1);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+}
+.nudge-icon { font-size: 24px; flex-shrink: 0; }
+.nudge-text { font-size: 12px; font-weight: 700; line-height: 1.5; color: rgba(255,255,255,0.92); }
+.nudge-text strong { color: #fff; font-weight: 900; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 24px 16px 0;
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo">🌿</div>
+    <div class="brand">Хоол Хаяхгүй</div>
+    <div class="brand-mn">НОГООН ОНОО ЦУГЛУУЛАХ СИСТЕМ</div>
+    <div class="rest-pill">📍 Пилот Ресторан #07</div>
+  </div>
+
+  <!-- MAIN FORM CARD -->
+  <div class="main-card">
+
+    <!-- FORM VIEW -->
+    <div id="formView">
+      <div class="card-top">
+        <div class="step-label">1 хоол = 10 оноо</div>
+        <h2>Хоолоо дуусгасан уу?</h2>
+        <p>Ресторан ажилтнаас QR кодыг аваад, доор утасны дугаараа оруулна уу.</p>
+      </div>
+      <div class="form-body">
+        <div class="field">
+          <label>Утасны дугаар</label>
+          <input type="tel" id="phoneInput" placeholder="9911 2233" maxlength="8" inputmode="numeric">
+          <div class="error-msg" id="phoneError">Зөв утасны дугаар оруулна уу (8 оронтой)</div>
+        </div>
+        <div class="field">
+          <label>Ресторан код</label>
+          <input type="text" id="codeInput" placeholder="REST-07" style="text-transform:uppercase; letter-spacing:1px;">
+          <div class="error-msg" id="codeError">Ресторан кодыг ажилтнаас авна уу</div>
+        </div>
+        <div class="hint-row">
+          <span class="hint-icon">💡</span>
+          Аппгүй — дугаараа оруулахад л хангалттай
+        </div>
+        <button class="submit-btn" onclick="submitForm()">
+          <span class="btn-icon">✅</span> Оноо авах
+        </button>
+      </div>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div class="success-screen" id="successView">
+      <div class="success-anim">🎉</div>
+      <div class="success-title">Амжилттай!</div>
+      <div class="success-sub">Хоолоо дуусгасанд баярлалаа.<br>Байгаль болон таны халаасанд хоёуланд ашигтай!</div>
+      <div class="points-badge">
+        <span>+10</span>
+        <span style="font-size:14px; font-weight:700; opacity:0.85;">НОГООН ОНОО</span>
+      </div>
+      <div class="total-row">
+        Нийт онооны үлдэгдэл: <strong id="totalPts">85</strong> оноо
+      </div>
+      <div class="progress-label">
+        <span id="ptsCurrent">85 / 100</span>
+        <span>500₮ хөнгөлөлт</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="next-reward" id="nextRewardMsg">Дараагийн шагналд 15 оноо дутуу</div>
+      <button class="again-btn" onclick="resetForm()">← Дахин оруулах</button>
+    </div>
+
+  </div>
+
+  <!-- INFO GRID -->
+  <div class="info-row">
+    <div class="info-card">
+      <div class="info-icon">🌾</div>
+      <div class="info-num">46т</div>
+      <div class="info-label">Хэмнэгдсэн хүнс энэ сард</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">👥</div>
+      <div class="info-num">312</div>
+      <div class="info-label">Нийт оролцогч хэрэглэгч</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🏪</div>
+      <div class="info-num">20</div>
+      <div class="info-label">Пилот ресторан УБ хотод</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">📉</div>
+      <div class="info-num">35%</div>
+      <div class="info-label">Хаягдлын бууралт</div>
+    </div>
+  </div>
+
+  <!-- REWARD INFO -->
+  <div class="reward-card">
+    <div class="reward-icon">🎁</div>
+    <div>
+      <div class="reward-title">Шагналын систем</div>
+      <div class="reward-desc">100 оноо = 500₮ хөнгөлөлт тухайн ресторанд<br>Оноог WhatsApp / Viber-ээр мэдэгдэнэ</div>
+    </div>
+  </div>
+
+  <!-- NUDGE -->
+  <div class="nudge">
+    <span class="nudge-icon">🌍</span>
+    <div class="nudge-text">Нэг хоол дуусгавал <strong>хар ширдэгний хэмжээний CO₂</strong> агаарт гарахгүй үлдэнэ</div>
+  </div>
+
+  <div class="footer">
+    ШУТИС · FIRST STEP · ТХЗ 12.3 · Student-Led 2026
+  </div>
+
+</div>
+
+<script>
+  let totalPoints = 75;
+
+  document.getElementById('codeInput').addEventListener('input', function() {
+    this.value = this.value.toUpperCase();
+  });
+
+  function submitForm() {
+    const phone = document.getElementById('phoneInput').value.replace(/\s/g,'');
+    const code = document.getElementById('codeInput').value.trim();
+    let valid = true;
+
+    document.getElementById('phoneError').classList.remove('show');
+    document.getElementById('codeError').classList.remove('show');
+
+    if (!phone || phone.length < 7 || !/^\d+$/.test(phone)) {
+      document.getElementById('phoneError').classList.add('show');
+      valid = false;
+    }
+    if (!code || code.length < 4) {
+      document.getElementById('codeError').classList.add('show');
+      valid = false;
+    }
+    if (!valid) return;
+
+    totalPoints += 10;
+    const pct = Math.min(Math.round((totalPoints % 100) / 100 * 100), 100);
+    const remaining = 100 - (totalPoints % 100);
+
+    document.getElementById('totalPts').textContent = totalPoints;
+    document.getElementById('ptsCurrent').textContent = (totalPoints % 100) + ' / 100';
+    document.getElementById('nextRewardMsg').textContent =
+      remaining === 100
+        ? '🎉 Та 500₮ хөнгөлөлт авах боломжтой!'
+        : 'Дараагийн шагналд ' + remaining + ' оноо дутуу';
+
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successView').classList.add('show');
+
+    setTimeout(() => {
+      document.getElementById('progressFill').style.width = pct + '%';
+    }, 200);
+  }
+
+  function resetForm() {
+    document.getElementById('successView').classList.remove('show');
+    document.getElementById('progressFill').style.width = '0%';
+    document.getElementById('formView').style.display = 'block';
+    document.getElementById('phoneInput').value = '';
+    document.getElementById('codeInput').value = '';
+  }
+</script>
+</body>
+</html>
